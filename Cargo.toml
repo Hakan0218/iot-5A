@@ -1,0 +1,32 @@
+[package]
+name = "iot_thingsboard"
+version = "0.1.0"
+authors = ["zidanhakan"]
+edition = "2021"
+resolver = "2"
+rust-version = "1.82"
+
+[[bin]]
+name = "iot_thingsboard"
+harness = false # do not use the built-in cargo test harness -> resolve rust-analyzer errors
+
+[profile.release]
+opt-level = "s"
+
+[profile.dev]
+debug = true    # Symbols are nice, and they don't increase the size on Flash
+opt-level = "z"
+
+[dependencies]
+esp-idf-svc = { version = "0.51", features = ["critical-section"] }
+esp-idf-hal = "0.45"
+esp-idf-sys = { version = "0.36", features = ["binstart"] }
+embedded-svc = "0.28"
+log = "0.4"
+anyhow = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+dht-hal-drv = "0.2"   # driver DHT22 berbasis embedded-hal
+
+[build-dependencies]
+embuild = { version = "0.33", features = ["espidf"] }

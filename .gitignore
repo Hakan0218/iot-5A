@@ -1,0 +1,5 @@
+/target
+/target_lama
+/.embuild
+/embuild_lama
+*.log
